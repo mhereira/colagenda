@@ -34,31 +34,31 @@
           <tbody *ngIf="transactionResponse">
             <tr>
               <td>Referencia</td>
-              <td id="referencia">{{params.x_id_invoice}}</td>
+              <td id="referencia">{{transactionResponse.x_id_invoice}}</td>
             </tr>
             <tr>
               <td class="bold">Fecha</td>
-              <td id="fecha" class="">{{params.x_transaction_date}}</td>
+              <td id="fecha" class="">{{transactionResponse.x_transaction_date}}</td>
             </tr>
             <tr>
               <td>Respuesta</td>
-              <td id="respuesta">{{params.x_transaction_state}}</td>
+              <td id="respuesta">{{transactionResponse.x_transaction_state}}</td>
             </tr>
             <tr>
               <td>Motivo</td>
-              <td id="motivo">{{params.x_response_reason_text}}</td>
+              <td id="motivo">{{transactionResponse.x_response_reason_text}}</td>
             </tr>
             <tr>
               <td class="bold">Banco</td>
-              <td class="" id="banco">{{params.x_bank_name}}</td>
+              <td class="" id="banco">{{transactionResponse.x_bank_name}}</td>
             </tr>
             <tr>
               <td class="bold">Recibo</td>
-              <td id="recibo">{{params.x_transaction_id}}</td>
+              <td id="recibo">{{transactionResponse.x_transaction_id}}</td>
             </tr>
             <tr>
               <td class="bold">Total</td>
-              <td class="" id="total">{{params.x_amount}} {{params.x_currency_code}}</td>
+              <td class="" id="total">{{transactionResponse.x_amount}} {{transactionResponse.x_currency_code}}</td>
             </tr>
           </tbody>
         </table>

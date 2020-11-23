@@ -58,7 +58,7 @@ export class BookingComponent implements OnInit {
 	public lng = -74.08175;
 	public selectedService: string;
 	public selectedCity: string;
-	public imageService: any ;
+	public imageService: any;
 	public serviceStartTime;
 	public serviceDate: string;
 	public otro: string;
@@ -77,7 +77,7 @@ export class BookingComponent implements OnInit {
 		planchadoTime: 0,
 		bathroomsTime: 0,
 		bedroomsTime: 0,
-		
+
 	};
 
 	public bussinesService: any = {
@@ -132,12 +132,12 @@ export class BookingComponent implements OnInit {
 	) {
 		this.selectedService = localStorage.getItem("selectedService");
 		this.selectedCity = localStorage.getItem("selectedCity");
-		if(this.selectedCity == "Medellín"){ this.lng = -75.53611 ; this.lat = 6.29139 }
-		if( this.selectedCity == "Bogotá" ){this.city = "Bogotá D.C." ; this.department = "Bogotá D.C." ; this.country = "Colombia" ; this.locationId = "4fZC8McSlOvpPfIZnG7w"}
-		if( this.selectedCity == "Medellín" ){this.city = "Medellin" ; this.department = "Medellin" ; this.country = "Colombia" ; this.locationId = "bDS8BjlImklLBpSPctkh"}
+		if (this.selectedCity == "Medellín") { this.lng = -75.53611; this.lat = 6.29139 }
+		if (this.selectedCity == "Bogotá") { this.city = "Bogotá D.C."; this.department = "Bogotá D.C."; this.country = "Colombia"; this.locationId = "4fZC8McSlOvpPfIZnG7w" }
+		if (this.selectedCity == "Medellín") { this.city = "Medellin"; this.department = "Medellin"; this.country = "Colombia"; this.locationId = "bDS8BjlImklLBpSPctkh" }
 		;
-	
-	console.log(this.selectedService)
+
+		console.log(this.selectedService)
 		this.cargarSelects();
 		// mantine el usuario de firebase loggeado
 		let usuario = JSON.parse(localStorage.getItem('usuario'));
@@ -145,13 +145,14 @@ export class BookingComponent implements OnInit {
 		this.user.uid = usuario.uid
 	}
 
-	ngOnInit() { this.usuarioActivo = this.authService.storeGetUserData('usuario');
-	console.log({
-	  userActive: this.usuarioActivo
+	ngOnInit() {
+		this.usuarioActivo = this.authService.storeGetUserData('usuario');
+		console.log({
+			userActive: this.usuarioActivo
 
-	});
-	
-	
+		});
+
+
 	}
 
 	openDialog() {
@@ -179,23 +180,23 @@ export class BookingComponent implements OnInit {
 	}
 	public volver() {
 		this.router.navigate(['servicios']);
-	   
-	
-	  }
+
+
+	}
 	public actualizarFactura() {
-		
-		if (this.seleccionarTotalHoras== 2){ this.mostrarTotalPrice = 39900}
-		else if (this.seleccionarTotalHoras== 3){ this.mostrarTotalPrice = 49900}
-		else if (this.seleccionarTotalHoras== 4){ this.mostrarTotalPrice = 59900}
-		else if (this.seleccionarTotalHoras== 5){ this.mostrarTotalPrice = 64900}
-		else if (this.seleccionarTotalHoras== 6){ this.mostrarTotalPrice = 69900}
-		else if (this.seleccionarTotalHoras== 7){ this.mostrarTotalPrice = 74900}
-		else if (this.seleccionarTotalHoras== 8){ this.mostrarTotalPrice = 79900}
+
+		if (this.seleccionarTotalHoras == 2) { this.mostrarTotalPrice = 39900 }
+		else if (this.seleccionarTotalHoras == 3) { this.mostrarTotalPrice = 49900 }
+		else if (this.seleccionarTotalHoras == 4) { this.mostrarTotalPrice = 59900 }
+		else if (this.seleccionarTotalHoras == 5) { this.mostrarTotalPrice = 64900 }
+		else if (this.seleccionarTotalHoras == 6) { this.mostrarTotalPrice = 69900 }
+		else if (this.seleccionarTotalHoras == 7) { this.mostrarTotalPrice = 74900 }
+		else if (this.seleccionarTotalHoras == 8) { this.mostrarTotalPrice = 79900 }
 	}
 
 	public homeServiceFactura() {
 		this.homeService.horasTotal = 0;
-		
+
 		//suma basica
 		this.homeService.horasTotal = Number(this.homeService.spaceAreaTime) + Number((this.homeService.kitchenTime)) + Number(this.homeService.lavadoPlatosTime) + Number(this.homeService.cocinarTime) + Number(this.homeService.lavadoRopaTime) + Number(this.homeService.planchadoTime) + Number(this.homeService.bathroomsTime) + Number(this.homeService.bedroomsTime);
 		//suma checkBoxes
@@ -209,7 +210,7 @@ export class BookingComponent implements OnInit {
 		if (this.homeService.balcon == true) { this.homeService.horasTotal = this.homeService.horasTotal + 30; }
 		if (this.homeService.jardin == true) { this.homeService.horasTotal = this.homeService.horasTotal + 60; }
 		this.mostrarTotalHoras = this.minutesToString(this.homeService.horasTotal)
-		
+
 		return this.homeService.horasTotal
 	}
 
@@ -227,28 +228,28 @@ export class BookingComponent implements OnInit {
 	public disinfectionServiceFactura() {
 		this.disinfectionService.horasTotal = 0;
 		this.disinfectionService.horasTotal = Number(this.disinfectionService.spaceAreaTime);
-		this.mostrarTotalHoras = (this.disinfectionService.horasTotal/60);
-		if (this.disinfectionService.horasTotal == 10){this.mostrarTotalPrice=35000}
-		else if (this.disinfectionService.horasTotal == 20){this.mostrarTotalPrice=35000}
-		else if (this.disinfectionService.horasTotal == 30){this.mostrarTotalPrice=35000}
-		else if (this.disinfectionService.horasTotal == 40){this.mostrarTotalPrice=39900}
-		else if (this.disinfectionService.horasTotal == 50){this.mostrarTotalPrice=44900}
-		else if (this.disinfectionService.horasTotal == 60){this.mostrarTotalPrice=49900}
-		else if (this.disinfectionService.horasTotal == 70){this.mostrarTotalPrice=54900}
-		else if (this.disinfectionService.horasTotal == 80){this.mostrarTotalPrice=59900}
-		else if (this.disinfectionService.horasTotal == 90){this.mostrarTotalPrice=64900}
-		else if (this.disinfectionService.horasTotal == 100){this.mostrarTotalPrice=69900}
-		else if (this.disinfectionService.horasTotal == 110){this.mostrarTotalPrice=74900}
-		else if (this.disinfectionService.horasTotal == 120){this.mostrarTotalPrice=79900}
-		else if (this.disinfectionService.horasTotal == 140){this.mostrarTotalPrice=84900}
-		else if (this.disinfectionService.horasTotal == 160){this.mostrarTotalPrice=89900}
-		else if (this.disinfectionService.horasTotal == 180){this.mostrarTotalPrice=94500}
-		else if (this.disinfectionService.horasTotal == 200){this.mostrarTotalPrice=99900}
-		else if (this.disinfectionService.horasTotal == 220){this.mostrarTotalPrice=125000}
-		else if (this.disinfectionService.horasTotal == 240){this.mostrarTotalPrice=150000}
-		else if (this.disinfectionService.horasTotal == 260){this.mostrarTotalPrice=175000}
-		else if (this.disinfectionService.horasTotal == 280){this.mostrarTotalPrice=200000}
-		else {this.mostrarTotalPrice = 250000}
+		this.mostrarTotalHoras = (this.disinfectionService.horasTotal / 60);
+		if (this.disinfectionService.horasTotal == 10) { this.mostrarTotalPrice = 35000 }
+		else if (this.disinfectionService.horasTotal == 20) { this.mostrarTotalPrice = 35000 }
+		else if (this.disinfectionService.horasTotal == 30) { this.mostrarTotalPrice = 35000 }
+		else if (this.disinfectionService.horasTotal == 40) { this.mostrarTotalPrice = 39900 }
+		else if (this.disinfectionService.horasTotal == 50) { this.mostrarTotalPrice = 44900 }
+		else if (this.disinfectionService.horasTotal == 60) { this.mostrarTotalPrice = 49900 }
+		else if (this.disinfectionService.horasTotal == 70) { this.mostrarTotalPrice = 54900 }
+		else if (this.disinfectionService.horasTotal == 80) { this.mostrarTotalPrice = 59900 }
+		else if (this.disinfectionService.horasTotal == 90) { this.mostrarTotalPrice = 64900 }
+		else if (this.disinfectionService.horasTotal == 100) { this.mostrarTotalPrice = 69900 }
+		else if (this.disinfectionService.horasTotal == 110) { this.mostrarTotalPrice = 74900 }
+		else if (this.disinfectionService.horasTotal == 120) { this.mostrarTotalPrice = 79900 }
+		else if (this.disinfectionService.horasTotal == 140) { this.mostrarTotalPrice = 84900 }
+		else if (this.disinfectionService.horasTotal == 160) { this.mostrarTotalPrice = 89900 }
+		else if (this.disinfectionService.horasTotal == 180) { this.mostrarTotalPrice = 94500 }
+		else if (this.disinfectionService.horasTotal == 200) { this.mostrarTotalPrice = 99900 }
+		else if (this.disinfectionService.horasTotal == 220) { this.mostrarTotalPrice = 125000 }
+		else if (this.disinfectionService.horasTotal == 240) { this.mostrarTotalPrice = 150000 }
+		else if (this.disinfectionService.horasTotal == 260) { this.mostrarTotalPrice = 175000 }
+		else if (this.disinfectionService.horasTotal == 280) { this.mostrarTotalPrice = 200000 }
+		else { this.mostrarTotalPrice = 250000 }
 		return this.disinfectionService.horasTotal
 	}
 
@@ -284,11 +285,11 @@ export class BookingComponent implements OnInit {
 
 	public valorServicio(minutos) {
 		let horas = (minutos / 60);
-		
+
 		let precio = horas * this.valorPorHora;
 		console.log(precio)
 		let precioFinal = Math.round(precio * 100) / 100;
-		
+
 		return precioFinal
 	}
 
@@ -309,8 +310,8 @@ export class BookingComponent implements OnInit {
 		let x = Number(this.seleccionarTotalHoras)
 		this.helperService.horas = Math.round(x * 100) / 100;
 		this.servicioAgendado = {};
-this.servicioAgendado = {
-	servicio: this.selectedService,
+		this.servicioAgendado = {
+			servicio: this.selectedService,
 			adulto: this.helperService.adulto,
 			reunion: this.helperService.eventos,
 			niños: this.helperService.menor,
@@ -321,13 +322,13 @@ this.servicioAgendado = {
 			direccionComplementos: this.user.adressComplements,
 			direccionIndicaciones: this.user.adressHints,
 			observaciones: this.user.adressHints,
-			cities: this.city ,
+			cities: this.city,
 			client: this.usuarioActivo,
 			country: this.country,
 			creado: "web",
 			department: this.department,
 			descuento: this.descuento,
-			destination: {lat: this.lat,lng: this.lng},
+			destination: { lat: this.lat, lng: this.lng },
 			enviarCorreo: false,
 			estado: "Orden de servicio",
 			fecha: this.serviceDate,
@@ -346,7 +347,7 @@ this.servicioAgendado = {
 		}
 		console.log(this.servicioAgendado);
 		localStorage.setItem('servicioAgendado', JSON.stringify(this.servicioAgendado));
-this.guardarServicio(this.servicioAgendado)
+		this.guardarServicio(this.servicioAgendado)
 	}
 
 	public agendarBusinessCleaning() {
@@ -366,13 +367,13 @@ this.guardarServicio(this.servicioAgendado)
 			direccionComplementos: this.user.adressComplements,
 			direccionIndicaciones: this.user.adressHints,
 			observaciones: this.user.adressHints,
-			cities: this.city ,
+			cities: this.city,
 			client: this.usuarioActivo,
 			country: this.country,
 			creado: "web",
 			department: this.department,
 			descuento: this.descuento,
-			destination: {lat: this.lat,lng: this.lng},
+			destination: { lat: this.lat, lng: this.lng },
 			enviarCorreo: false,
 			estado: "Orden de servicio",
 			fecha: this.serviceDate,
@@ -390,12 +391,12 @@ this.guardarServicio(this.servicioAgendado)
 			userid: this.usuarioActivo.id
 		}
 		this.servicioAgendado.limpieza = true;
-		if (this.bussinesService.cocinarTime > 0) {this.servicioAgendado.cafeteria = true}
-		if (this.bussinesService.meetingRoom == true) {this.servicioAgendado.reunion = true}
-		if (this.bussinesService.shopWindow == true) {this.servicioAgendado.limpiezaEstanteria = true}
+		if (this.bussinesService.cocinarTime > 0) { this.servicioAgendado.cafeteria = true }
+		if (this.bussinesService.meetingRoom == true) { this.servicioAgendado.reunion = true }
+		if (this.bussinesService.shopWindow == true) { this.servicioAgendado.limpiezaEstanteria = true }
 		console.log(this.servicioAgendado);
 		localStorage.setItem('servicioAgendado', JSON.stringify(this.servicioAgendado));
-	this.guardarServicio(this.servicioAgendado)
+		this.guardarServicio(this.servicioAgendado)
 	}
 
 	public agendarHomeCleaning() {
@@ -415,13 +416,13 @@ this.guardarServicio(this.servicioAgendado)
 			direccionComplementos: this.user.adressComplements,
 			direccionIndicaciones: this.user.adressHints,
 			observaciones: this.user.adressHints,
-			cities: this.city ,
+			cities: this.city,
 			client: this.usuarioActivo,
 			country: this.country,
 			creado: "web",
 			department: this.department,
 			descuento: this.descuento,
-			destination: {lat: this.lat,lng: this.lng},
+			destination: { lat: this.lat, lng: this.lng },
 			enviarCorreo: false,
 			estado: "Orden de servicio",
 			fecha: this.serviceDate,
@@ -442,12 +443,12 @@ this.guardarServicio(this.servicioAgendado)
 			this.servicioAgendado.alimentos = true
 			this.servicioAgendado.cafeteria = true
 		}
-		if (this.homeService.lavadoRopaTime > 0) {this.servicioAgendado.lavado = true}
-		if (this.homeService.planchadoTime > 0) {this.servicioAgendado.planchado = true}
+		if (this.homeService.lavadoRopaTime > 0) { this.servicioAgendado.lavado = true }
+		if (this.homeService.planchadoTime > 0) { this.servicioAgendado.planchado = true }
 		console.log(this.servicioAgendado);
 		localStorage.setItem('servicioAgendado', JSON.stringify(this.servicioAgendado));
-		
-this.guardarServicio(this.servicioAgendado)
+
+		this.guardarServicio(this.servicioAgendado)
 	}
 
 	public agendarDisinfection() {
@@ -466,13 +467,13 @@ this.guardarServicio(this.servicioAgendado)
 			direccionComplementos: this.user.adressComplements,
 			direccionIndicaciones: this.user.adressHints,
 			observaciones: this.user.adressHints,
-			cities: this.city ,
+			cities: this.city,
 			client: this.usuarioActivo,
 			country: this.country,
 			creado: "web",
 			department: this.department,
 			descuento: this.descuento,
-			destination: {lat: this.lat,lng: this.lng},
+			destination: { lat: this.lat, lng: this.lng },
 			enviarCorreo: false,
 			estado: "Orden de servicio",
 			fecha: this.serviceDate,
@@ -502,9 +503,9 @@ this.guardarServicio(this.servicioAgendado)
 		}
 	}
 
-	public openCheckout(){
-		var data={ 
-			//Parametros compra (obligatorio) 
+	public openCheckout() {
+		var data = {
+			//Parametros compra (obligatorio)
 			invoice: Date.now(),
 			currency: "cop",
 			name: this.selectedService,
@@ -515,9 +516,9 @@ this.guardarServicio(this.servicioAgendado)
 			country: "co",
 			lang: "es",
 			external: "false",
-			//Onpage="false" - Standard="true" 
+			//Onpage="false" - Standard="true"
 			//Atributos opcionales
-			method:'GET',
+			method: 'GET',
 			extra1: '',
 			extra2: 'ePayco',
 			extra3: '',
@@ -528,45 +529,45 @@ this.guardarServicio(this.servicioAgendado)
 			type_doc_billing: "cc",
 			mobilephone_billing: this.usuarioActivo.telefono,
 			number_doc_billing: this.usuarioActivo.documento,
-  
-		   //atributo deshabilitación metodo de pago
+
+			//atributo deshabilitación metodo de pago
 			//methodsDisable: ["TDC", "PSE","SP","CASH","DP"],
 
 			response: "http://localhost:4200/response",
 			confirmation: "http://localhost:4200/gracias",
-		  }
-		  /*
-		var data={
-			//Parametros compra (obligatorio)
-			name: "Vestido Mujer Primavera",
-			description: "Vestido Mujer Primavera",
-			invoice: "1234",
-			currency: "cop",
-			amount: "12000",
-			tax_base: "0",
-			tax: "0",
-			country: "co",
-			lang: "en",
-  
-			//Onpage="false" - Standard="true"
-			external: "false",
-  
-  
-			//Atributos opcionales
-			extra1: "extra1",
-			extra2: "extra2",
-			extra3: "extra3",
-			response: "http://localhost:4200/response",
-			confirmation: "http://localhost:4200/confirmation",
-  
-			
-  
-			}*/
-			this.ePayco.onCloseModal = this.onCloseEpaycoModal
-			this.ePayco.open(data);	
+		}
+		/*
+	  var data={
+		  //Parametros compra (obligatorio)
+		  name: "Vestido Mujer Primavera",
+		  description: "Vestido Mujer Primavera",
+		  invoice: "1234",
+		  currency: "cop",
+		  amount: "12000",
+		  tax_base: "0",
+		  tax: "0",
+		  country: "co",
+		  lang: "en",
+
+		  //Onpage="false" - Standard="true"
+		  external: "false",
+
+
+		  //Atributos opcionales
+		  extra1: "extra1",
+		  extra2: "extra2",
+		  extra3: "extra3",
+		  response: "http://localhost:4200/response",
+		  confirmation: "http://localhost:4200/confirmation",
+
+
+
+		  }*/
+		this.ePayco.onCloseModal = this.onCloseEpaycoModal
+		this.ePayco.open(data);
 	}
 
-	onCloseEpaycoModal(){
+	onCloseEpaycoModal() {
 		alert('Close ePayco Modal!!!!!!!')
 	}
 }

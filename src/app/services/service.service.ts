@@ -19,7 +19,7 @@ export class serviceService {
 		private db: AngularFirestore,
 		private angularFireAuth: AngularFireAuth,
 		private http: Http,
-	) {	}
+	) { }
 
 	public isLogged() {
 		return this.angularFireAuth.authState;
@@ -57,9 +57,8 @@ export class serviceService {
 	}
 
 	public guardarservicio(servicio) {
-	
-			return firebase.firestore().doc('servicios/' + servicio.id).set(servicio);
-		
+		return firebase.firestore().doc('servicios/' + servicio.id).set(servicio);
+
 	}
 
 	public guardartransaccion(servicio) {
@@ -84,5 +83,10 @@ export class serviceService {
 
 	public registerServicio(servicio) {
 		return firebase.firestore().doc('servicios/' + servicio.id).set(Object.assign({}, servicio));
+	}
+
+	public updateServicio(servicio: any) {
+		console.log(servicio);
+		return firebase.firestore().doc(`servicios/${servicio.id}`).update(servicio);
 	}
 }
